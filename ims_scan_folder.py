@@ -4,20 +4,27 @@ import os
 def hash_file(filename):
    """"This function returns the MD5 hash of the file."""
    h = hashlib.md5()
-   with open(filename,'rb') as file:
-       chunk = 0
-       while chunk != b'':
-           chunk = file.read(1024)
-           h.update(chunk)
+   try:
+       with open(filename,'rb') as file:
+           chunk = 0
+           while chunk != b'':
+               chunk = file.read(1024)
+               h.update(chunk)
+   except PermissionError:
+       print(f"Permission denied: {filename}")
+       return None
    return h.hexdigest()
 
 def hash_files_in_folder(folder):
     """This function returns a list of tuples (filename, md5hash) for all files in a folder."""
     file_hashes = {}
     duplicate_hashes = {}
+    count=0
     for root, dirs, files in os.walk(folder):
         for file in files:
+            count = count + 1
             filename = os.path.join(root, file)
+            print("\nProcessing file" + str(count) + " " + filename)
             md5hash = hash_file(filename)
             if md5hash not in file_hashes.values():
                 file_hashes[filename] = md5hash
