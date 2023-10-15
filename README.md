@@ -4,6 +4,11 @@ laptops. Leveraging the robust capabilities of AWS Amplify for the backend, IMS 
 The user interface comprises Python scripts for granular control and Gatsby web apps for an intuitive, web-based experience. 
 IMS is aimed at maintaining a clutter-free digital environment at home.”
 
+#  Key capabilities include:
+
+* <b>Deduplication:</b> Implemented deduplication based on MD5 fingerprinting, ensuring that your storage is used efficiently by eliminating duplicate files.
+* <b>Scoping:</b> Allows for scoping based on file extension, giving you the flexibility to manage your files according to their types.
+
 # Local scripts
 ## ims_scan_folder.py
 In this script, the input function is used to prompt you for the path to the folder you want to hash. 
